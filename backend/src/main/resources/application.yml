@@ -1,0 +1,51 @@
+spring:
+  application:
+    name: nyaya-backend
+  datasource:
+    url: ${NYAYA_DB_URL:jdbc:postgresql://localhost:5432/nyaya}
+    username: ${NYAYA_DB_USERNAME:nyaya}
+    password: ${NYAYA_DB_PASSWORD:nyaya}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+        jdbc:
+          lob:
+            non_contextual_creation: true
+  jackson:
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
+
+server:
+  port: ${PORT:8080}
+  error:
+    include-message: never
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "health,info"
+
+nyaya:
+  security:
+    jwt:
+      secret: ${NYAYA_JWT_SECRET:CHANGE_ME_TO_A_BASE64_SECRET}
+      access-token-seconds: 900
+      refresh-token-seconds: 2592000
+  firebase:
+    service-account-file: ${NYAYA_FIREBASE_SERVICE_ACCOUNT:}
+  ai:
+    openai-api-key: ${OPENAI_API_KEY:}
+    model: ${OPENAI_MODEL:gpt-4.1-mini}
+    timeout-seconds: 20
+
+logging:
+  level:
+    root: INFO
+    com.nyaya: DEBUG
+

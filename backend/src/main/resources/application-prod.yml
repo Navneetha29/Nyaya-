@@ -1,0 +1,25 @@
+spring:
+  datasource:
+    url: ${NYAYA_DB_URL}
+    username: ${NYAYA_DB_USERNAME}
+    password: ${NYAYA_DB_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+
+nyaya:
+  security:
+    jwt:
+      secret: ${NYAYA_JWT_SECRET}
+  firebase:
+    service-account-file: ${NYAYA_FIREBASE_SERVICE_ACCOUNT:}
+  ai:
+    openai-api-key: ${OPENAI_API_KEY}
+    model: ${OPENAI_MODEL:gpt-4.1-mini}
+
+logging:
+  level:
+    root: INFO
+    com.nyaya: INFO
+
